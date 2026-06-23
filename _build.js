@@ -231,7 +231,6 @@ function chrome(activeSlug){
       <a class="tab" href="index.html" style="padding:9px 13px;border-radius:3px;color:#8c867b;">Homepage</a>
       <div class="dd"><a class="tab" href="${activeSlug}.html" style="padding:9px 13px;border-radius:3px;color:#1a1a1a;background:#d4930a;">Disasters ▾</a><div class="dd-menu">${menuItems(activeSlug)}</div></div>
       <a class="tab" href="go-bag.html" style="padding:9px 13px;border-radius:3px;color:#8c867b;">Article</a>
-      <a class="tab" href="pnw.html" style="padding:9px 13px;border-radius:3px;color:#8c867b;">PNW Focus</a>
       <span style="width:1px;height:20px;background:#2a2a2a;margin:0 8px;"></span>
       <a class="tab" href="about.html" style="padding:9px 13px;border-radius:3px;color:#8c867b;">About</a>
     </div>
