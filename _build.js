@@ -187,7 +187,7 @@ const FONTS = '<link rel="preconnect" href="https://fonts.googleapis.com"><link 
 const STYLE = `<style>
   *{box-sizing:border-box;}
   html,body{margin:0;padding:0;background:#141414;}
-  body{font-family:Inter,system-ui,sans-serif;color:#f0ece4;-webkit-font-smoothing:antialiased;background:#1a1a1a;}
+  body{font-family:Inter,system-ui,sans-serif;color:#f0ece4;-webkit-font-smoothing:antialiased;background-color:#1a1a1a;background-image:url('assets/topo.svg');background-size:cover;background-position:center;background-attachment:fixed;}
   a{text-decoration:none;color:inherit;}
   ::selection{background:#cc2200;color:#f0ece4;}
   @keyframes alertpulse{0%,100%{opacity:1;}50%{opacity:.35;}}
@@ -248,7 +248,7 @@ function masthead(activeSlug){
         <span style="font-size:15px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;font-family:Inter,sans-serif;">Deadliest&nbsp;Disasters</span>
       </a>
       <nav style="display:flex;gap:30px;font-size:13px;font-weight:600;color:#b8b2a7;align-items:center;">
-        <a class="navlink" href="go-bag.html">Preparedness</a><a class="navlink" href="pnw.html">PNW Focus</a><a class="navlink" href="earthquakes.html">Gear</a><a class="navlink" href="about.html">About</a>
+        <a class="navlink" href="go-bag.html">Preparedness</a><a class="navlink" href="pnw.html">PNW Focus</a><a class="navlink" href="gear.html">Gear</a><a class="navlink" href="about.html">About</a>
       </nav>
     </div>
   </header>`;
@@ -301,7 +301,7 @@ ${d.pnwBody.map(t=>`          <p style="font-size:16px;line-height:1.65;color:#d
             <div style="font-size:10.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#d4930a;margin-bottom:8px;">${g[0]}</div>
             <h3 style="font-family:'Playfair Display',serif;font-size:17px;font-weight:700;margin:0 0 8px;line-height:1.2;">${g[1]}</h3>
             <p style="font-size:12.5px;color:#9a948a;line-height:1.5;margin:0 0 16px;flex:1;">${g[2]}</p>
-            <button class="btn btn-outline" style="width:100%;background:transparent;border:1px solid #d4930a;color:#d4930a;padding:10px;font-size:12.5px;font-weight:700;border-radius:3px;">Check Price →</button>
+            <a href="gear.html" class="btn btn-outline" style="display:block;text-align:center;width:100%;background:transparent;border:1px solid #d4930a;color:#d4930a;padding:10px;font-size:12.5px;font-weight:700;border-radius:3px;">Check Price →</a>
           </div>
         </div>`).join('\n');
 

@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 820" font-family="Inter, system-ui, sans-serif">
+  <defs>
+    <filter id="pnwTopo" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB">
+      <feTurbulence type="fractalNoise" baseFrequency="0.016 0.02" numOctaves="4" seed="21" result="n"/>
+      <feColorMatrix in="n" type="luminanceToAlpha" result="a"/>
+      <feComponentTransfer in="a" result="b">
+        <feFuncA type="discrete" tableValues="0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0"/>
+      </feComponentTransfer>
+      <feFlood flood-color="#3a414c" result="col"/>
+      <feComposite in="col" in2="b" operator="in"/>
+    </filter>
+    <clipPath id="pnwClip">
+      <!-- Washington (top) + Oregon (bottom), shared coast on the left -->
+      <path d="M150 70 L300 60 L470 66 L640 60 L660 250 L656 360 L470 372 L300 372 L300 372 L640 372 L648 470 L652 700 L470 716 L250 728 L150 736 C146 700 168 682 150 650 C132 622 152 590 130 562 C110 530 140 498 120 468 C150 430 150 420 156 392 C150 360 168 330 150 300 C132 270 152 238 130 210 C110 182 140 140 120 112 C124 96 138 82 150 70 Z"/>
+    </clipPath>
+  </defs>
+
+  <!-- panel -->
+  <rect width="760" height="820" rx="14" fill="#15171b"/>
+  <rect x="0.5" y="0.5" width="759" height="819" rx="14" fill="none" stroke="#2a2e34" stroke-width="1"/>
+
+  <!-- ocean label -->
+  <text x="46" y="410" transform="rotate(-90 46 410)" text-anchor="middle" fill="#3a3f47" font-size="15" font-weight="700" letter-spacing="6">PACIFIC OCEAN</text>
+
+  <!-- land with topo contours -->
+  <g clip-path="url(#pnwClip)">
+    <rect width="760" height="820" fill="#1c2128"/>
+    <rect width="760" height="820" filter="url(#pnwTopo)"/>
+  </g>
+
+  <!-- combined outline -->
+  <path d="M150 70 L300 60 L470 66 L640 60 L660 250 L656 360 L648 470 L652 700 L470 716 L250 728 L150 736 C146 700 168 682 150 650 C132 622 152 590 130 562 C110 530 140 498 120 468 C150 430 150 420 156 392 C150 360 168 330 150 300 C132 270 152 238 130 210 C110 182 140 140 120 112 C124 96 138 82 150 70 Z" fill="none" stroke="#8b919c" stroke-width="2.5" stroke-linejoin="round"/>
+
+  <!-- WA / OR border (Columbia River) -->
+  <path d="M150 392 C300 380 470 384 656 372" fill="none" stroke="#4d6470" stroke-width="2.2" opacity="0.85"/>
+  <text x="610" y="362" text-anchor="end" fill="#5f7a87" font-size="10.5" font-weight="600" letter-spacing="1">COLUMBIA R.</text>
+
+  <!-- Cascade range spine (dashed N-S) -->
+  <path d="M392 70 C404 230 388 470 404 712" fill="none" stroke="#6c7079" stroke-width="1.4" stroke-dasharray="2 7" stroke-linecap="round" opacity="0.8"/>
+
+  <!-- ===== CASCADIA SUBDUCTION ZONE (offshore, west of coast) ===== -->
+  <path d="M86 120 C70 240 96 360 80 470 C66 560 92 650 78 736" fill="none" stroke="#cc2200" stroke-width="2.6" stroke-dasharray="10 7" stroke-linecap="round"/>
+  <g transform="translate(40 600)">
+    <text transform="rotate(-90)" text-anchor="middle" fill="#ff6a4a" font-size="11.5" font-weight="700" letter-spacing="2">CASCADIA SUBDUCTION ZONE</text>
+  </g>
+
+  <!-- state labels -->
+  <text x="540" y="200" text-anchor="middle" fill="#2f343b" font-size="40" font-weight="800" font-family="'Playfair Display', Georgia, serif" letter-spacing="2">WASH.</text>
+  <text x="540" y="560" text-anchor="middle" fill="#2f343b" font-size="44" font-weight="800" font-family="'Playfair Display', Georgia, serif" letter-spacing="2">OREGON</text>
+
+  <!-- Volcanoes -->
+  <g stroke="#d4930a" stroke-width="2" fill="none" stroke-linejoin="round">
+    <path d="M398 150 l11 19 -22 0 z"/>   <!-- Rainier -->
+    <path d="M384 300 l10 17 -20 0 z"/>   <!-- St Helens -->
+    <path d="M404 408 l11 19 -22 0 z"/>   <!-- Hood -->
+  </g>
+  <text x="418" y="158" fill="#cdb98a" font-size="11.5" font-weight="600">Mt. Rainier</text>
+  <text x="372" y="296" text-anchor="end" fill="#cdb98a" font-size="11.5" font-weight="600">Mt. St. Helens</text>
+  <text x="424" y="424" fill="#cdb98a" font-size="11.5" font-weight="600">Mt. Hood</text>
+
+  <!-- Seattle -->
+  <circle cx="318" cy="196" r="3.4" fill="#d4930a"/>
+  <text x="306" y="190" text-anchor="end" fill="#9a948a" font-size="12" font-weight="600">Seattle</text>
+
+  <!-- Portland (highlighted) -->
+  <g transform="translate(300 410)">
+    <circle r="10" fill="#cc2200" opacity="0.18"/>
+    <circle r="4.6" fill="#cc2200"/>
+    <circle r="4.6" fill="none" stroke="#ff6a4a" stroke-width="1.2"/>
+  </g>
+  <text x="286" y="406" text-anchor="end" fill="#f0ece4" font-size="14" font-weight="700">Portland</text>
+
+  <!-- Oregon coast towns (tsunami zone) -->
+  <circle cx="150" cy="450" r="2.6" fill="#9a948a"/>
+  <text x="160" y="454" fill="#7c766b" font-size="10" font-weight="500">Astoria</text>
+  <circle cx="136" cy="560" r="2.6" fill="#9a948a"/>
+  <text x="146" y="564" fill="#7c766b" font-size="10" font-weight="500">Newport</text>
+
+  <!-- legend -->
+  <g transform="translate(470 700)" font-size="11" font-weight="600">
+    <line x1="0" y1="0" x2="22" y2="0" stroke="#cc2200" stroke-width="2.6" stroke-dasharray="6 5"/>
+    <text x="30" y="4" fill="#9a948a">Cascadia fault</text>
+    <path d="M2 18 l7 12 -14 0 z" transform="translate(4 0)" fill="none" stroke="#d4930a" stroke-width="2"/>
+    <text x="30" y="30" fill="#9a948a">Active volcano</text>
+  </g>
+
+  <!-- compass -->
+  <g transform="translate(660 720)">
+    <circle r="22" fill="none" stroke="#2a2e34" stroke-width="1.4"/>
+    <path d="M0 -16 L5 4 L0 -1 L-5 4 Z" fill="#d4930a"/>
+    <text x="0" y="-26" text-anchor="middle" fill="#8c867b" font-size="11" font-weight="700">N</text>
+  </g>
+</svg>
