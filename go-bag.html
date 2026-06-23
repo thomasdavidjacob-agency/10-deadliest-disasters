@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How to Build a Go-Bag for Cascadia | 10 Deadliest Disasters</title>
+<meta name="description" content="Most emergency kits are built for a power outage. The Pacific Northwest needs to plan for something far larger — here's what two weeks of self-sufficiency really looks like.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;0,900;1,600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;background:#141414;}
+  body{font-family:Inter,system-ui,sans-serif;color:#f0ece4;-webkit-font-smoothing:antialiased;background:#1a1a1a;}
+  a{text-decoration:none;color:inherit;}
+  ::selection{background:#cc2200;color:#f0ece4;}
+  .btn{cursor:pointer;font-family:Inter,sans-serif;transition:background .15s,border-color .15s,color .15s;}
+  .btn-red:hover{background:#e02800;}
+  .btn-amber:hover{background:#e8a519;}
+  .btn-outline:hover{background:#d4930a;color:#1a1a1a;}
+  .tab{transition:color .15s,background .15s;}
+  .tab:hover{color:#f0ece4;}
+  .navlink:hover{color:#f0ece4;}
+  .ph{background:linear-gradient(135deg,#242424,#171717);display:flex;align-items:center;justify-content:center;text-align:center;color:#6c665b;font-size:10.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:8px;}
+  .dd{position:relative;display:inline-block;}
+  .dd-menu{position:absolute;top:100%;left:0;background:#101010;border:1px solid #2a2a2a;border-radius:5px;padding:6px 0;min-width:240px;display:none;z-index:400;box-shadow:0 16px 40px rgba(0,0,0,.55);}
+  .dd-right .dd-menu{left:auto;right:0;}
+  .dd:hover .dd-menu{display:block;}
+  .dd-menu a{display:flex;align-items:center;gap:11px;padding:9px 16px;font-size:13px;font-weight:600;color:#b8b2a7;white-space:nowrap;}
+  .dd-menu a .r{font-family:'Playfair Display',serif;font-weight:800;color:#6c665b;min-width:18px;font-size:13px;}
+  .dd-menu a:hover{background:#1a1a1a;color:#d4930a;}
+  .dd-menu a:hover .r{color:#d4930a;}
+</style>
+</head>
+<body>
+
+<!-- ============ TOP SWITCHER / SITE CHROME ============ -->
+<div style="position:sticky;top:0;z-index:200;background:#101010;border-bottom:1px solid #2a2a2a;">
+  <div style="max-width:1280px;margin:0 auto;padding:0 28px;height:60px;display:flex;align-items:center;justify-content:space-between;gap:24px;">
+    <a href="index.html" style="display:flex;align-items:center;gap:11px;">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 3L22 20H2L12 3Z" stroke="#cc2200" stroke-width="2" stroke-linejoin="round"/><path d="M12 10V14" stroke="#cc2200" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="17" r="1" fill="#cc2200"/></svg>
+      <div style="display:flex;align-items:baseline;gap:7px;font-family:'Playfair Display',serif;">
+        <span style="font-size:21px;font-weight:900;color:#d4930a;line-height:1;">10</span>
+        <span style="font-size:13px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#f0ece4;font-family:Inter,sans-serif;">Deadliest Disasters</span>
+      </div>
+    </a>
+    <div style="display:flex;align-items:center;gap:4px;font-size:12.5px;font-weight:600;">
+      <a class="tab" href="index.html" style="padding:9px 13px;border-radius:3px;color:#8c867b;">Homepage</a>
+      <div class="dd"><a class="tab" href="earthquakes.html" style="padding:9px 13px;border-radius:3px;color:#8c867b;">Disasters ▾</a><div class="dd-menu"><a href="pandemics.html"><span class="r">01</span>Pandemics</a><a href="floods.html"><span class="r">02</span>Floods</a><a href="earthquakes.html"><span class="r">03</span>Earthquakes</a><a href="hurricanes.html"><span class="r">04</span>Hurricanes</a><a href="tsunamis.html"><span class="r">05</span>Tsunamis</a><a href="volcanoes.html"><span class="r">06</span>Volcanic Eruptions</a><a href="nuclear-accidents.html"><span class="r">07</span>Nuclear Accidents</a><a href="terrorist-attacks.html"><span class="r">08</span>Terrorist Attacks</a><a href="wildfires.html"><span class="r">09</span>Wildfires</a><a href="cyber-attacks.html"><span class="r">10</span>Cyber Attacks</a></div></div>
+      <a class="tab" href="go-bag.html" style="padding:9px 13px;border-radius:3px;color:#1a1a1a;background:#d4930a;">Article</a>
+      <a class="tab" href="pnw.html" style="padding:9px 13px;border-radius:3px;color:#8c867b;">PNW Focus</a>
+      <span style="width:1px;height:20px;background:#2a2a2a;margin:0 8px;"></span>
+      <a class="tab" href="about.html" style="padding:9px 13px;border-radius:3px;color:#8c867b;">About</a>
+    </div>
+  </div>
+</div>
+
+<!-- ============ ARTICLE / BLOG PAGE ============ -->
+<div>
+
+  <header style="background:#141414;border-bottom:1px solid #242424;">
+    <div style="max-width:1180px;margin:0 auto;padding:18px 28px;display:flex;align-items:center;justify-content:space-between;">
+      <a href="index.html" style="display:flex;align-items:baseline;gap:9px;font-family:'Playfair Display',serif;"><span style="font-size:30px;font-weight:900;color:#d4930a;line-height:1;">10</span><span style="font-size:15px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;font-family:Inter,sans-serif;">Deadliest&nbsp;Disasters</span></a>
+      <nav style="display:flex;gap:30px;font-size:13px;font-weight:600;color:#b8b2a7;align-items:center;"><a class="navlink" href="go-bag.html" style="color:#d4930a;">Preparedness</a><a class="navlink" href="pnw.html">PNW Focus</a><a class="navlink" href="earthquakes.html">Gear</a><a class="navlink" href="about.html">About</a></nav>
+    </div>
+  </header>
+
+  <!-- ARTICLE HEADER -->
+  <div style="max-width:740px;margin:0 auto;padding:60px 28px 0;">
+    <div style="font-size:12px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#d4930a;margin-bottom:22px;">Preparedness · Guides</div>
+    <h1 style="font-family:'Playfair Display',serif;font-weight:800;font-size:50px;line-height:1.08;margin:0 0 22px;letter-spacing:-.015em;text-wrap:balance;">How to Build a Go-Bag That Will Actually Get You Through Cascadia</h1>
+    <p style="font-size:20px;line-height:1.55;color:#b8b2a7;margin:0 0 30px;">Most emergency kits are built for a power outage. The Pacific Northwest needs to plan for something far larger. Here's what two weeks of self-sufficiency really looks like.</p>
+  </div>
+
+  <!-- CREDIBILITY BAR -->
+  <div style="max-width:740px;margin:0 auto;padding:0 28px;">
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:18px 0;border-top:1px solid #242424;border-bottom:1px solid #242424;flex-wrap:wrap;gap:16px;">
+      <div style="display:flex;align-items:center;gap:13px;">
+        <div class="ph" style="width:46px;height:46px;border-radius:50%;font-size:9px;">Photo</div>
+        <div><div style="font-size:14px;font-weight:700;color:#f0ece4;">Dana Whitfield</div><div style="font-size:12.5px;color:#8c867b;">Emergency Management Editor · Reviewed by a CEM</div></div>
+      </div>
+      <div style="display:flex;gap:22px;font-size:12.5px;color:#8c867b;"><span>Updated June 2026</span><span>14 min read</span><span style="color:#d4930a;">12 sources</span></div>
+    </div>
+  </div>
+
+  <!-- BODY: TOC + ARTICLE -->
+  <section style="max-width:1100px;margin:0 auto;padding:48px 28px 64px;display:grid;grid-template-columns:220px 1fr;gap:56px;align-items:start;">
+    <!-- TOC -->
+    <aside style="position:sticky;top:80px;">
+      <div style="font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#d4930a;margin-bottom:16px;">Contents</div>
+      <div style="display:flex;flex-direction:column;gap:13px;font-size:13.5px;line-height:1.4;">
+        <span style="color:#f0ece4;border-left:2px solid #d4930a;padding-left:13px;">Why 72 hours isn't enough</span>
+        <span style="color:#9a948a;padding-left:15px;">Water: the first failure point</span>
+        <span style="color:#9a948a;padding-left:15px;">Food that survives the shelf</span>
+        <span style="color:#9a948a;padding-left:15px;">Light, heat, and power</span>
+        <span style="color:#9a948a;padding-left:15px;">The 10-minute test</span>
+      </div>
+    </aside>
+
+    <!-- ARTICLE -->
+    <article style="max-width:680px;font-size:18px;line-height:1.78;color:#d8d3c8;">
+      <p style="font-size:21px;line-height:1.6;color:#f0ece4;margin:0 0 28px;">When the Cascadia Subduction Zone ruptures, the standard advice you've heard your whole life — keep 72 hours of supplies — will not be enough. Not even close.</p>
+      <p style="margin:0 0 24px;">FEMA and Oregon Emergency Management both advise residents west of the Cascades to prepare for a minimum of two weeks without outside help. Roads will buckle, bridges over the Willamette may fail, and the region could be carved into isolated "islands" while crews work to restore access.</p>
+      <h2 style="font-family:'Playfair Display',serif;font-size:28px;font-weight:700;color:#f0ece4;margin:42px 0 16px;line-height:1.15;">Water: the first failure point</h2>
+      <p style="margin:0 0 24px;">A person needs about one gallon per day for drinking and basic hygiene. For a family of four over two weeks, that's 56 gallons — far more than most households store. Municipal water may be contaminated or simply unavailable for weeks after a major quake.</p>
+
+      <!-- EDITOR'S PICK CALLOUT -->
+      <div style="background:#1f1f1f;border:1px solid #2c2c2c;border-left:3px solid #d4930a;border-radius:4px;padding:24px 26px;margin:34px 0;display:grid;grid-template-columns:96px 1fr;gap:22px;align-items:center;">
+        <div class="ph" style="width:96px;height:96px;border-radius:4px;">Filter</div>
+        <div>
+          <div style="font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#d4930a;margin-bottom:8px;">Editor's Pick · Water</div>
+          <h3 style="font-family:'Playfair Display',serif;font-size:20px;font-weight:700;margin:0 0 7px;line-height:1.2;">Gravity-Fed Filtration System</h3>
+          <p style="font-size:14px;color:#9a948a;line-height:1.55;margin:0 0 14px;">After testing nine filters, this is the one we'd stake a two-week emergency on. No power, no pumping — purifies 12 liters at a time.</p>
+          <button class="btn btn-amber" style="background:#d4930a;color:#1a1a1a;border:none;padding:10px 18px;font-size:12.5px;font-weight:700;border-radius:3px;">See Why We Recommend It →</button>
+        </div>
+      </div>
+
+      <p style="margin:0 0 24px;">Bottled water works, but it's heavy and takes space. A combination of stored water plus a reliable filter gives you redundancy — if your stored supply is compromised, you can still treat rainwater or a neighbor's pool.</p>
+      <h2 style="font-family:'Playfair Display',serif;font-size:28px;font-weight:700;color:#f0ece4;margin:42px 0 16px;line-height:1.15;">Food that survives the shelf</h2>
+      <p style="margin:0 0 24px;">Forget the bunker stereotype. The goal is two weeks of calories that require no refrigeration and minimal cooking. Freeze-dried meals, canned proteins, nut butters, and high-calorie bars cover most needs. Rotate your supply twice a year so nothing expires unnoticed.</p>
+
+      <!-- PREPAREDNESS RECOMMENDATION CALLOUT -->
+      <div style="background:#1c0d09;border:1px solid #3a1a10;border-radius:4px;padding:24px 26px;margin:34px 0;">
+        <div style="display:flex;align-items:center;gap:9px;margin-bottom:12px;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M12 3L22 20H2L12 3Z" stroke="#d4930a" stroke-width="2" stroke-linejoin="round"/><path d="M12 10v4" stroke="#d4930a" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="17" r="1" fill="#d4930a"/></svg><span style="font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#d4930a;">Preparedness Recommendation</span></div>
+        <p style="font-size:15px;line-height:1.6;color:#d8c9bf;margin:0 0 14px;">Our editors keep a single 2-week food bucket per person in the house. It's the simplest way to guarantee you've hit the calorie threshold without spreadsheet math.</p>
+        <button class="btn btn-outline" style="background:transparent;border:1px solid #d4930a;color:#d4930a;padding:9px 16px;font-size:12px;font-weight:700;border-radius:3px;">Compare Food Kits →</button>
+      </div>
+
+      <p style="margin:0 0 24px;">Whatever you choose, store it low and secured. A pantry shelf that collapses in the first 30 seconds of shaking is no help to anyone.</p>
+      <h2 style="font-family:'Playfair Display',serif;font-size:28px;font-weight:700;color:#f0ece4;margin:42px 0 16px;line-height:1.15;">The 10-minute test</h2>
+      <p style="margin:0 0 24px;">Here's the only readiness check that matters: if the ground started shaking right now and the power went out for two weeks, could you stay put, hydrated, fed, and in contact with your family? If any answer is no, that's where you start.</p>
+    </article>
+  </section>
+
+  <!-- EMAIL CAPTURE -->
+  <section style="background:#1c0d09;border-top:1px solid #3a1a10;border-bottom:1px solid #3a1a10;">
+    <div style="max-width:760px;margin:0 auto;padding:56px 28px;text-align:center;">
+      <div style="font-size:12px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#ff6a4a;margin-bottom:16px;">Free Download</div>
+      <h2 style="font-family:'Playfair Display',serif;font-size:34px;font-weight:700;margin:0 0 14px;line-height:1.12;">Get the PNW Disaster Preparedness Guide</h2>
+      <p style="font-size:16px;color:#d8c9bf;margin:0 0 28px;line-height:1.6;max-width:520px;margin-left:auto;margin-right:auto;">A 28-page printable checklist built specifically for Portland-area households. Join 40,000 readers preparing for Cascadia.</p>
+      <form onsubmit="return false;" style="display:flex;gap:10px;max-width:480px;margin:0 auto;flex-wrap:wrap;justify-content:center;">
+        <input type="email" placeholder="you@email.com" style="flex:1;min-width:220px;background:#141414;border:1px solid #3a3a3a;color:#f0ece4;padding:15px 18px;font-size:14px;border-radius:3px;font-family:Inter,sans-serif;outline:none;" />
+        <button class="btn btn-red" style="background:#cc2200;color:#fff;border:none;padding:15px 26px;font-size:14px;font-weight:700;border-radius:3px;white-space:nowrap;">Send Me the Guide</button>
+      </form>
+      <div style="font-size:12px;color:#8c867b;margin-top:14px;">No spam. Unsubscribe anytime. We never sell your data.</div>
+    </div>
+  </section>
+
+</div>
+</body>
+</html>
