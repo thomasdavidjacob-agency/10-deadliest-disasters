@@ -1,78 +1,26 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 600" font-family="Inter, system-ui, sans-serif">
-  <defs>
-    <filter id="orTopo" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB">
-      <feTurbulence type="fractalNoise" baseFrequency="0.018 0.024" numOctaves="4" seed="9" result="n"/>
-      <feColorMatrix in="n" type="luminanceToAlpha" result="a"/>
-      <feComponentTransfer in="a" result="b">
-        <feFuncA type="discrete" tableValues="0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0"/>
-      </feComponentTransfer>
-      <feFlood flood-color="#3a414c" result="col"/>
-      <feComposite in="col" in2="b" operator="in"/>
-    </filter>
-    <clipPath id="orClip">
-      <path d="M90 96 L360 80 L700 72 L744 96 L750 300 L754 472 L470 488 L250 500 L156 508 C150 470 170 452 150 420 C132 392 152 360 130 332 C110 300 140 268 120 238 C104 210 134 168 110 140 C100 120 96 108 90 96 Z"/>
-    </clipPath>
-  </defs>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 600" font-family="Inter, system-ui, sans-serif">
+  <!-- Outline map of Oregon — white lines on transparent background -->
+  <path d="M104 156
+           C150 126 240 120 320 116
+           C440 110 560 108 648 116
+           L690 150
+           C702 240 696 320 702 372
+           L708 486
+           L380 502
+           L150 508
+           C150 472 130 452 150 420
+           C132 392 150 360 130 330
+           C112 300 140 270 120 240
+           C106 214 124 184 104 156 Z"
+        fill="rgba(240,236,228,0.02)" stroke="#f0ece4" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
 
-  <!-- panel -->
-  <rect width="820" height="600" rx="14" fill="#15171b"/>
-  <rect x="0.5" y="0.5" width="819" height="599" rx="14" fill="none" stroke="#2a2e34" stroke-width="1"/>
+  <!-- faint state wordmark -->
+  <text x="446" y="356" text-anchor="middle" fill="#f0ece4" opacity="0.16" font-size="46" font-weight="800" font-family="'Playfair Display', Georgia, serif" letter-spacing="6">OREGON</text>
 
-  <!-- ocean label -->
-  <text x="46" y="300" transform="rotate(-90 46 300)" text-anchor="middle" fill="#3a3f47" font-size="15" font-weight="700" letter-spacing="6">PACIFIC OCEAN</text>
-
-  <!-- state body with topo contours -->
-  <g clip-path="url(#orClip)">
-    <rect width="820" height="600" fill="#1c2128"/>
-    <rect width="820" height="600" filter="url(#orTopo)"/>
+  <!-- Portland marker -->
+  <g transform="translate(252 172)">
+    <circle r="9" fill="#d4930a" opacity="0.18"/>
+    <circle r="4" fill="#d4930a"/>
   </g>
-
-  <!-- state outline -->
-  <path d="M90 96 L360 80 L700 72 L744 96 L750 300 L754 472 L470 488 L250 500 L156 508 C150 470 170 452 150 420 C132 392 152 360 130 332 C110 300 140 268 120 238 C104 210 134 168 110 140 C100 120 96 108 90 96 Z" fill="none" stroke="#8b919c" stroke-width="2.5" stroke-linejoin="round"/>
-
-  <!-- Cascade range (dashed N-S spine) -->
-  <path d="M352 96 C360 200 348 320 360 470" fill="none" stroke="#6c7079" stroke-width="1.4" stroke-dasharray="2 7" stroke-linecap="round" opacity="0.8"/>
-
-  <!-- Columbia River accent along north -->
-  <path d="M120 120 C260 104 470 96 720 92" fill="none" stroke="#4d6470" stroke-width="2" opacity="0.7"/>
-
-  <!-- Willamette Valley faint -->
-  <path d="M250 150 C236 240 250 330 250 470" fill="none" stroke="#3a414c" stroke-width="1.2" opacity="0.7"/>
-
-  <!-- Mt Hood -->
-  <path d="M356 150 l11 19 -22 0 z" fill="none" stroke="#d4930a" stroke-width="2" stroke-linejoin="round"/>
-  <text x="376" y="166" fill="#cdb98a" font-size="12" font-weight="600">Mt. Hood</text>
-
-  <!-- Crater Lake dot -->
-  <circle cx="330" cy="408" r="3.2" fill="none" stroke="#6c7079" stroke-width="1.6"/>
-  <text x="342" y="412" fill="#8c867b" font-size="11" font-weight="500">Crater Lake</text>
-
-  <!-- Portland (capital-style star) -->
-  <g transform="translate(238 150)">
-    <circle r="9" fill="#cc2200" opacity="0.18"/>
-    <circle r="4.4" fill="#cc2200"/>
-    <circle r="4.4" fill="none" stroke="#ff6a4a" stroke-width="1.2"/>
-  </g>
-  <text x="252" y="146" fill="#f0ece4" font-size="14" font-weight="700">Portland</text>
-
-  <!-- Salem -->
-  <circle cx="232" cy="200" r="3" fill="#d4930a"/>
-  <text x="244" y="204" fill="#9a948a" font-size="11" font-weight="500">Salem</text>
-  <!-- Eugene -->
-  <circle cx="220" cy="262" r="3" fill="#d4930a"/>
-  <text x="232" y="266" fill="#9a948a" font-size="11" font-weight="500">Eugene</text>
-  <!-- Bend -->
-  <circle cx="372" cy="262" r="3" fill="#d4930a"/>
-  <text x="384" y="266" fill="#9a948a" font-size="11" font-weight="500">Bend</text>
-
-  <!-- wordmark -->
-  <text x="540" y="300" text-anchor="middle" fill="#2f343b" font-size="58" font-weight="800" font-family="'Playfair Display', Georgia, serif" letter-spacing="2">OREGON</text>
-  <text x="540" y="330" text-anchor="middle" fill="#6c7079" font-size="12" font-weight="700" letter-spacing="5">PACIFIC NORTHWEST · USA</text>
-
-  <!-- compass -->
-  <g transform="translate(712 470)">
-    <circle r="22" fill="none" stroke="#2a2e34" stroke-width="1.4"/>
-    <path d="M0 -16 L5 4 L0 -1 L-5 4 Z" fill="#d4930a"/>
-    <text x="0" y="-26" text-anchor="middle" fill="#8c867b" font-size="11" font-weight="700">N</text>
-  </g>
+  <text x="266" y="176" fill="#f0ece4" font-size="14" font-weight="600">Portland</text>
 </svg>
